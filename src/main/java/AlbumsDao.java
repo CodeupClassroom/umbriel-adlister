@@ -9,14 +9,14 @@ public class AlbumsDao {
 
     public AlbumsDao() {
         try {
-
+            Config config = new Config();
             // STEP ONE: Register Driver
             DriverManager.registerDriver(new Driver());
             // STEP TWO: Create connection
             connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/codeup_test_db?allowPublicKeyRetrieval=true&useSSL=false",
-                    "root",
-                    "gocodeup"
+                    config.getUrl(),
+                    config.getUser(),
+                    config.getPassword()
             );
         } catch(SQLException e) {
             throw new RuntimeException("Error connecting to database.", e);
